@@ -1,9 +1,9 @@
 var fs = require('fs');
 var readline = require('readline');
 //taking 3 files
-var file1 = fs.readFileSync('India2011.csv');
-var file2 = fs.readFileSync('IndiaSC2011.csv');
-var file3 = fs.readFileSync('IndiaST2011.csv');
+var file1 = fs.readFileSync('../csv/India2011.csv');
+var file2 = fs.readFileSync('../csv/IndiaSC2011.csv');
+var file3 = fs.readFileSync('../csv/IndiaST2011.csv');
 
 // var writefile=fs.createWriteStream('.csv');
 
@@ -52,15 +52,15 @@ for (var k = 0; k < arrAgeGroup.length; k++) {
     for(var j = 0;j < requiredHeader.length;j++) {
       if(varbody[index[j+1]] == arrAgeGroup[k] && varbody[index[j]] == 'Total'){
         sum = sum+parseInt(varbody[index[j+2]]);
-        ageObject['Age-group']=arrAgeGroup[k];
+        ageObject['Age']=arrAgeGroup[k];
       }
     }
   }
-  ageObject['Literate - Persons']=sum;
+  ageObject['Literate']=sum;
   arrObj.push(ageObject);
   ageObject={};
   sum=0;
 }
 console.log(arrObj);
 var jsString=JSON.stringify(arrObj);
-fs.writeFileSync('part1.json',jsString);
+fs.writeFileSync('../json/part1.json',jsString);

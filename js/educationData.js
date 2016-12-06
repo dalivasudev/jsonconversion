@@ -1,8 +1,8 @@
 var fs = require('fs');
-//taking 3 files
-var file1 = fs.readFileSync('India2011.csv');
-var file2 = fs.readFileSync('IndiaSC2011.csv');
-var file3 = fs.readFileSync('IndiaST2011.csv');
+// taking 3 files
+var file1 = fs.readFileSync('../csv/India2011.csv');
+var file2 = fs.readFileSync('../csv/IndiaSC2011.csv');
+var file3 = fs.readFileSync('../csv/IndiaST2011.csv');
 
 var finalfile = file1 + file2 + file3;
 //appending 3 files
@@ -43,8 +43,9 @@ for(var j = 2;j < requiredHeader.length;j++){
       }
     }
   }
-
-  objEdu[requiredHeader[j]]=sum;
+objEdu['EduCateg']=requiredHeader[j];
+objEdu['TotalPop']=sum;
+  // objEdu[requiredHeader[j]]=sum;
   if(!(arrObj.hasOwnProperty(requiredHeader[j]))) {
     arrObj.push(objEdu);
     // console.log(objEdu);
@@ -54,4 +55,4 @@ for(var j = 2;j < requiredHeader.length;j++){
 
 console.log(arrObj);
 var jsString=JSON.stringify(arrObj);
-fs.writeFileSync('part2.json',jsString);
+fs.writeFileSync('../json/part2.json',jsString);
